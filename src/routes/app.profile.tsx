@@ -24,7 +24,7 @@ function ProfilePage() {
   if (!user) return null;
 
   function resetWeights() {
-    setWeights({ userId: user.id, updatedAt: new Date().toISOString(), ...DEFAULT_WEIGHTS });
+    setWeights({ userId: user!.id, updatedAt: new Date().toISOString(), ...DEFAULT_WEIGHTS });
   }
 
   return (

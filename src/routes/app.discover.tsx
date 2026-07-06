@@ -35,7 +35,7 @@ function DiscoverPage() {
       .map((r) => ({ item: r as ServiceRequest, breakdown: computeRequestFit(user, r, weights) }))
       .sort((a, b) => b.breakdown.composite - a.breakdown.composite);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isClient, user.id, weights]);
+  }, [isClient, user!.id, weights]);
 
   const current = ranked[index];
   const next = ranked[index + 1];
