@@ -9,38 +9,297 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as OnboardingProfileSetupRouteImport } from './routes/onboarding.profile-setup'
+import { Route as OnboardingPreferencesRouteImport } from './routes/onboarding.preferences'
+import { Route as OnboardingObjectiveRouteImport } from './routes/onboarding.objective'
+import { Route as AppSyncRouteImport } from './routes/app.sync'
+import { Route as AppSettingsRouteImport } from './routes/app.settings'
+import { Route as AppRequestsRouteImport } from './routes/app.requests'
+import { Route as AppProfileRouteImport } from './routes/app.profile'
+import { Route as AppNotificationsRouteImport } from './routes/app.notifications'
+import { Route as AppMyInterestsRouteImport } from './routes/app.my-interests'
+import { Route as AppMessagesRouteImport } from './routes/app.messages'
+import { Route as AppMatchesRouteImport } from './routes/app.matches'
+import { Route as AppInterestedRouteImport } from './routes/app.interested'
+import { Route as AppDiscoverRouteImport } from './routes/app.discover'
+import { Route as AppDashboardRouteImport } from './routes/app.dashboard'
+import { Route as AppProfileIdRouteImport } from './routes/app.profile.$id'
+import { Route as AppChatIdRouteImport } from './routes/app.chat.$id'
 
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OnboardingProfileSetupRoute = OnboardingProfileSetupRouteImport.update({
+  id: '/onboarding/profile-setup',
+  path: '/onboarding/profile-setup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingPreferencesRoute = OnboardingPreferencesRouteImport.update({
+  id: '/onboarding/preferences',
+  path: '/onboarding/preferences',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingObjectiveRoute = OnboardingObjectiveRouteImport.update({
+  id: '/onboarding/objective',
+  path: '/onboarding/objective',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppSyncRoute = AppSyncRouteImport.update({
+  id: '/sync',
+  path: '/sync',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppRequestsRoute = AppRequestsRouteImport.update({
+  id: '/requests',
+  path: '/requests',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProfileRoute = AppProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppNotificationsRoute = AppNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMyInterestsRoute = AppMyInterestsRouteImport.update({
+  id: '/my-interests',
+  path: '/my-interests',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMessagesRoute = AppMessagesRouteImport.update({
+  id: '/messages',
+  path: '/messages',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMatchesRoute = AppMatchesRouteImport.update({
+  id: '/matches',
+  path: '/matches',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppInterestedRoute = AppInterestedRouteImport.update({
+  id: '/interested',
+  path: '/interested',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDiscoverRoute = AppDiscoverRouteImport.update({
+  id: '/discover',
+  path: '/discover',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDashboardRoute = AppDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProfileIdRoute = AppProfileIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => AppProfileRoute,
+} as any)
+const AppChatIdRoute = AppChatIdRouteImport.update({
+  id: '/chat/$id',
+  path: '/chat/$id',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/app/dashboard': typeof AppDashboardRoute
+  '/app/discover': typeof AppDiscoverRoute
+  '/app/interested': typeof AppInterestedRoute
+  '/app/matches': typeof AppMatchesRoute
+  '/app/messages': typeof AppMessagesRoute
+  '/app/my-interests': typeof AppMyInterestsRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/profile': typeof AppProfileRouteWithChildren
+  '/app/requests': typeof AppRequestsRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/sync': typeof AppSyncRoute
+  '/onboarding/objective': typeof OnboardingObjectiveRoute
+  '/onboarding/preferences': typeof OnboardingPreferencesRoute
+  '/onboarding/profile-setup': typeof OnboardingProfileSetupRoute
+  '/app/chat/$id': typeof AppChatIdRoute
+  '/app/profile/$id': typeof AppProfileIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/app/dashboard': typeof AppDashboardRoute
+  '/app/discover': typeof AppDiscoverRoute
+  '/app/interested': typeof AppInterestedRoute
+  '/app/matches': typeof AppMatchesRoute
+  '/app/messages': typeof AppMessagesRoute
+  '/app/my-interests': typeof AppMyInterestsRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/profile': typeof AppProfileRouteWithChildren
+  '/app/requests': typeof AppRequestsRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/sync': typeof AppSyncRoute
+  '/onboarding/objective': typeof OnboardingObjectiveRoute
+  '/onboarding/preferences': typeof OnboardingPreferencesRoute
+  '/onboarding/profile-setup': typeof OnboardingProfileSetupRoute
+  '/app/chat/$id': typeof AppChatIdRoute
+  '/app/profile/$id': typeof AppProfileIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/app/dashboard': typeof AppDashboardRoute
+  '/app/discover': typeof AppDiscoverRoute
+  '/app/interested': typeof AppInterestedRoute
+  '/app/matches': typeof AppMatchesRoute
+  '/app/messages': typeof AppMessagesRoute
+  '/app/my-interests': typeof AppMyInterestsRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/profile': typeof AppProfileRouteWithChildren
+  '/app/requests': typeof AppRequestsRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/sync': typeof AppSyncRoute
+  '/onboarding/objective': typeof OnboardingObjectiveRoute
+  '/onboarding/preferences': typeof OnboardingPreferencesRoute
+  '/onboarding/profile-setup': typeof OnboardingProfileSetupRoute
+  '/app/chat/$id': typeof AppChatIdRoute
+  '/app/profile/$id': typeof AppProfileIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/login'
+    | '/signup'
+    | '/app/dashboard'
+    | '/app/discover'
+    | '/app/interested'
+    | '/app/matches'
+    | '/app/messages'
+    | '/app/my-interests'
+    | '/app/notifications'
+    | '/app/profile'
+    | '/app/requests'
+    | '/app/settings'
+    | '/app/sync'
+    | '/onboarding/objective'
+    | '/onboarding/preferences'
+    | '/onboarding/profile-setup'
+    | '/app/chat/$id'
+    | '/app/profile/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/app'
+    | '/login'
+    | '/signup'
+    | '/app/dashboard'
+    | '/app/discover'
+    | '/app/interested'
+    | '/app/matches'
+    | '/app/messages'
+    | '/app/my-interests'
+    | '/app/notifications'
+    | '/app/profile'
+    | '/app/requests'
+    | '/app/settings'
+    | '/app/sync'
+    | '/onboarding/objective'
+    | '/onboarding/preferences'
+    | '/onboarding/profile-setup'
+    | '/app/chat/$id'
+    | '/app/profile/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/login'
+    | '/signup'
+    | '/app/dashboard'
+    | '/app/discover'
+    | '/app/interested'
+    | '/app/matches'
+    | '/app/messages'
+    | '/app/my-interests'
+    | '/app/notifications'
+    | '/app/profile'
+    | '/app/requests'
+    | '/app/settings'
+    | '/app/sync'
+    | '/onboarding/objective'
+    | '/onboarding/preferences'
+    | '/onboarding/profile-setup'
+    | '/app/chat/$id'
+    | '/app/profile/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
+  LoginRoute: typeof LoginRoute
+  SignupRoute: typeof SignupRoute
+  OnboardingObjectiveRoute: typeof OnboardingObjectiveRoute
+  OnboardingPreferencesRoute: typeof OnboardingPreferencesRoute
+  OnboardingProfileSetupRoute: typeof OnboardingProfileSetupRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +307,173 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/onboarding/profile-setup': {
+      id: '/onboarding/profile-setup'
+      path: '/onboarding/profile-setup'
+      fullPath: '/onboarding/profile-setup'
+      preLoaderRoute: typeof OnboardingProfileSetupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding/preferences': {
+      id: '/onboarding/preferences'
+      path: '/onboarding/preferences'
+      fullPath: '/onboarding/preferences'
+      preLoaderRoute: typeof OnboardingPreferencesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding/objective': {
+      id: '/onboarding/objective'
+      path: '/onboarding/objective'
+      fullPath: '/onboarding/objective'
+      preLoaderRoute: typeof OnboardingObjectiveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/sync': {
+      id: '/app/sync'
+      path: '/sync'
+      fullPath: '/app/sync'
+      preLoaderRoute: typeof AppSyncRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/settings': {
+      id: '/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/requests': {
+      id: '/app/requests'
+      path: '/requests'
+      fullPath: '/app/requests'
+      preLoaderRoute: typeof AppRequestsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/profile': {
+      id: '/app/profile'
+      path: '/profile'
+      fullPath: '/app/profile'
+      preLoaderRoute: typeof AppProfileRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/notifications': {
+      id: '/app/notifications'
+      path: '/notifications'
+      fullPath: '/app/notifications'
+      preLoaderRoute: typeof AppNotificationsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/my-interests': {
+      id: '/app/my-interests'
+      path: '/my-interests'
+      fullPath: '/app/my-interests'
+      preLoaderRoute: typeof AppMyInterestsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/messages': {
+      id: '/app/messages'
+      path: '/messages'
+      fullPath: '/app/messages'
+      preLoaderRoute: typeof AppMessagesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/matches': {
+      id: '/app/matches'
+      path: '/matches'
+      fullPath: '/app/matches'
+      preLoaderRoute: typeof AppMatchesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/interested': {
+      id: '/app/interested'
+      path: '/interested'
+      fullPath: '/app/interested'
+      preLoaderRoute: typeof AppInterestedRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/discover': {
+      id: '/app/discover'
+      path: '/discover'
+      fullPath: '/app/discover'
+      preLoaderRoute: typeof AppDiscoverRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/dashboard': {
+      id: '/app/dashboard'
+      path: '/dashboard'
+      fullPath: '/app/dashboard'
+      preLoaderRoute: typeof AppDashboardRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/profile/$id': {
+      id: '/app/profile/$id'
+      path: '/$id'
+      fullPath: '/app/profile/$id'
+      preLoaderRoute: typeof AppProfileIdRouteImport
+      parentRoute: typeof AppProfileRoute
+    }
+    '/app/chat/$id': {
+      id: '/app/chat/$id'
+      path: '/chat/$id'
+      fullPath: '/app/chat/$id'
+      preLoaderRoute: typeof AppChatIdRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppProfileRouteChildren {
+  AppProfileIdRoute: typeof AppProfileIdRoute
+}
+
+const AppProfileRouteChildren: AppProfileRouteChildren = {
+  AppProfileIdRoute: AppProfileIdRoute,
+}
+
+const AppProfileRouteWithChildren = AppProfileRoute._addFileChildren(
+  AppProfileRouteChildren,
+)
+
+interface AppRouteChildren {
+  AppDashboardRoute: typeof AppDashboardRoute
+  AppDiscoverRoute: typeof AppDiscoverRoute
+  AppInterestedRoute: typeof AppInterestedRoute
+  AppMatchesRoute: typeof AppMatchesRoute
+  AppMessagesRoute: typeof AppMessagesRoute
+  AppMyInterestsRoute: typeof AppMyInterestsRoute
+  AppNotificationsRoute: typeof AppNotificationsRoute
+  AppProfileRoute: typeof AppProfileRouteWithChildren
+  AppRequestsRoute: typeof AppRequestsRoute
+  AppSettingsRoute: typeof AppSettingsRoute
+  AppSyncRoute: typeof AppSyncRoute
+  AppChatIdRoute: typeof AppChatIdRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppDashboardRoute: AppDashboardRoute,
+  AppDiscoverRoute: AppDiscoverRoute,
+  AppInterestedRoute: AppInterestedRoute,
+  AppMatchesRoute: AppMatchesRoute,
+  AppMessagesRoute: AppMessagesRoute,
+  AppMyInterestsRoute: AppMyInterestsRoute,
+  AppNotificationsRoute: AppNotificationsRoute,
+  AppProfileRoute: AppProfileRouteWithChildren,
+  AppRequestsRoute: AppRequestsRoute,
+  AppSettingsRoute: AppSettingsRoute,
+  AppSyncRoute: AppSyncRoute,
+  AppChatIdRoute: AppChatIdRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
+  LoginRoute: LoginRoute,
+  SignupRoute: SignupRoute,
+  OnboardingObjectiveRoute: OnboardingObjectiveRoute,
+  OnboardingPreferencesRoute: OnboardingPreferencesRoute,
+  OnboardingProfileSetupRoute: OnboardingProfileSetupRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
