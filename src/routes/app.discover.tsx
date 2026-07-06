@@ -41,9 +41,9 @@ function DiscoverPage() {
   const next = ranked[index + 1];
 
   async function swipe(dir: "left" | "right") {
-    if (!current) return;
-    const next = adjustWeights(weights, current.breakdown, dir);
-    setWeights(next);
+    if (!current || !user) return;
+    const nextW = adjustWeights(weights, current.breakdown, dir);
+    setWeights(nextW);
 
     // Optimistic write + queue if offline
     try {
