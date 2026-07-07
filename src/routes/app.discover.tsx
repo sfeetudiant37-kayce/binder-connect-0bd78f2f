@@ -73,6 +73,18 @@ function DiscoverPage() {
       console.warn(e);
     }
 
+    if (dir === "right") {
+      if (isClient) {
+        toast.success("Request sent", {
+          description: "We'll let this provider know you're interested.",
+        });
+      } else {
+        toast.success("Your info has been sent to the client", {
+          description: "They'll see your profile and contact details.",
+        });
+      }
+    }
+
     setIndex((i) => i + 1);
   }
 
