@@ -41,7 +41,7 @@ export const dict = {
     skip: "Skip for now",
     save: "Save",
     cancel: "Cancel",
-    home: "Home",
+    home: "Home page\u00a0",
     dashboard: "Dashboard",
     discover: "Discover",
     matches: "Matches",
