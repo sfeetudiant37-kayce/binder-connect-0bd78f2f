@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AnimatePresence } from "framer-motion";
 import { Clock, MapPin, Star } from "lucide-react";
 import { useMemo, useState } from "react";
+import { toast } from "sonner";
 import { FitScoreBreakdownModal } from "@/components/binder/FitScoreBreakdown";
 import { SwipeCard } from "@/components/binder/SwipeCard";
 import { EmptyState } from "@/components/binder/EmptyState";
