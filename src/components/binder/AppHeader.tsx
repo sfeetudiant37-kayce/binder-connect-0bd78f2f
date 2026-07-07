@@ -3,8 +3,7 @@ import { Settings, UserCircle2 } from "lucide-react";
 import { useApp } from "@/lib/context/AppContext";
 
 export function AppHeader({ title }: { title?: string }) {
-  const { t, role, toggleRole, user } = useApp();
-  const isClient = role === "client";
+  const { t, user } = useApp();
 
   return (
     <header className="sticky top-0 z-30 border-b border-[#E2E8F0] bg-white">
@@ -23,30 +22,6 @@ export function AppHeader({ title }: { title?: string }) {
         </div>
 
         <div className="flex items-center gap-2">
-          {user && (
-            <button
-              onClick={toggleRole}
-              aria-label={t("switchRole")}
-              className="inline-flex overflow-hidden rounded-full border border-[#1E40AF] text-[11px] font-semibold"
-            >
-              <span
-                className={
-                  "px-2.5 py-1 " +
-                  (isClient ? "bg-[#1E40AF] text-white" : "text-[#1E40AF]")
-                }
-              >
-                {t("client")}
-              </span>
-              <span
-                className={
-                  "px-2.5 py-1 " +
-                  (!isClient ? "bg-[#1E40AF] text-white" : "text-[#1E40AF]")
-                }
-              >
-                {t("provider")}
-              </span>
-            </button>
-          )}
           <Link
             to="/app/profile"
             aria-label={t("profile")}

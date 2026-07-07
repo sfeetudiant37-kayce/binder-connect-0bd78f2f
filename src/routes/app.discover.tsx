@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AnimatePresence } from "framer-motion";
 import { Clock, MapPin, Star } from "lucide-react";
 import { useMemo, useState } from "react";
+import { toast } from "sonner";
 import { FitScoreBreakdownModal } from "@/components/binder/FitScoreBreakdown";
 import { SwipeCard } from "@/components/binder/SwipeCard";
 import { EmptyState } from "@/components/binder/EmptyState";
@@ -70,6 +71,18 @@ function DiscoverPage() {
       }
     } catch (e) {
       console.warn(e);
+    }
+
+    if (dir === "right") {
+      if (isClient) {
+        toast.success("Request sent", {
+          description: "We'll let this provider know you're interested.",
+        });
+      } else {
+        toast.success("Your info has been sent to the client", {
+          description: "They'll see your profile and contact details.",
+        });
+      }
     }
 
     setIndex((i) => i + 1);
