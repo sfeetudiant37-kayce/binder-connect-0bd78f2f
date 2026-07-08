@@ -31,17 +31,23 @@ function LoginPage() {
   }
 
   return (
-    <main className="min-h-dvh bg-white">
+    <main className="min-h-dvh" style={{ background: "var(--gradient-hero)" }}>
       <div className="mx-auto max-w-md px-6 py-8">
-        <Link to="/" className="inline-flex items-center gap-1 text-sm text-[#1E40AF]">
+        <Link to="/" className="inline-flex items-center gap-1 text-sm font-medium text-brand">
           <ArrowLeft size={16} /> Back
         </Link>
-        <h1 className="mt-6 text-2xl font-bold">{t("signIn")}</h1>
-        <p className="mt-1 text-sm text-[#64748B]">
-          Welcome back. Sign in to continue.
-        </p>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-4">
+        <div className="mt-8">
+          <span className="eyebrow">Welcome back</span>
+          <h1 className="mt-2 font-display text-3xl font-bold tracking-tight">
+            {t("signIn")}
+          </h1>
+          <p className="mt-1.5 text-sm text-muted-foreground">
+            Sign in to pick up where you left off.
+          </p>
+        </div>
+
+        <form onSubmit={handleSubmit(onSubmit)} className="card-elevated mt-8 space-y-4 p-6">
           <Field label={t("email")} error={errors.email?.message}>
             <input
               type="email"
@@ -61,7 +67,7 @@ function LoginPage() {
             />
           </Field>
           <div className="flex justify-end">
-            <button type="button" className="text-xs font-semibold text-[#1E40AF]">
+            <button type="button" className="text-xs font-semibold text-brand hover:underline">
               {t("forgot")}
             </button>
           </div>
@@ -70,9 +76,9 @@ function LoginPage() {
           </button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-[#64748B]">
+        <p className="mt-6 text-center text-sm text-muted-foreground">
           {t("noAccount")}{" "}
-          <Link to="/signup" className="font-semibold text-[#1E40AF]">
+          <Link to="/signup" className="font-semibold text-brand hover:underline">
             {t("signUp")}
           </Link>
         </p>
@@ -92,9 +98,11 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-xs font-semibold text-[#0f172a]">{label}</span>
+      <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        {label}
+      </span>
       {children}
-      {error && <span className="mt-1 block text-xs text-[#DC2626]">{error}</span>}
+      {error && <span className="mt-1 block text-xs text-danger">{error}</span>}
     </label>
   );
 }
