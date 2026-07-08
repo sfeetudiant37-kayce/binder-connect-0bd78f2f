@@ -66,7 +66,7 @@ export function SwipeCard({
             : { scale: 1, y: 0, opacity: 1 }
         }
         transition={{ type: "spring", stiffness: 260, damping: 24 }}
-        className="relative w-full max-w-sm cursor-grab select-none rounded-2xl border border-[#E2E8F0] bg-white p-5 shadow-lg active:cursor-grabbing"
+        className="card-elevated relative w-full max-w-sm cursor-grab select-none p-5 active:cursor-grabbing"
       >
         {isMutual && (
           <div className="mb-3 inline-flex items-center gap-1 rounded-full bg-[#1E40AF] px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-white">

@@ -20,7 +20,7 @@ function AppLayout() {
   if (!user) return null;
 
   return (
-    <div className="flex min-h-dvh flex-col bg-[#F8FAFC]">
+    <div className="flex min-h-dvh flex-col" style={{ background: "var(--gradient-hero)" }}>
       <OfflineBar />
       <AppHeader />
       <main className="mx-auto w-full max-w-lg flex-1 px-4 pb-6 pt-4">

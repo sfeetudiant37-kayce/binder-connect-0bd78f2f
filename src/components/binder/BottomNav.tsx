@@ -25,9 +25,9 @@ export function BottomNav() {
   return (
     <nav
       aria-label="Primary"
-      className="sticky bottom-0 z-30 border-t border-[#E2E8F0] bg-white"
+      className="glass-bar sticky bottom-0 z-30 border-t pb-[env(safe-area-inset-bottom)]"
     >
-      <ul className="mx-auto grid max-w-lg grid-cols-5">
+      <ul className="mx-auto grid max-w-lg grid-cols-5 gap-1 px-2 py-1.5">
         {tabs.map((tab) => {
           const active = path === tab.to || path.startsWith(tab.to + "/");
           const Icon = tab.icon;
@@ -35,12 +35,16 @@ export function BottomNav() {
             <li key={tab.to}>
               <Link
                 to={tab.to}
-                className="flex min-h-[56px] flex-col items-center justify-center gap-0.5 py-2 text-[10px] font-medium"
-                style={{ color: active ? "#1E40AF" : "#64748B" }}
                 aria-current={active ? "page" : undefined}
+                className="group relative flex min-h-[52px] flex-col items-center justify-center gap-0.5 rounded-xl py-1.5 text-[10px] font-semibold transition-colors"
+                style={{
+                  color: active ? "var(--color-brand-foreground)" : "var(--color-muted-foreground)",
+                  background: active ? "var(--gradient-brand)" : "transparent",
+                  boxShadow: active ? "var(--shadow-soft)" : "none",
+                }}
               >
-                <Icon size={22} strokeWidth={active ? 2.5 : 2} />
-                <span>{tab.label}</span>
+                <Icon size={20} strokeWidth={active ? 2.5 : 2} />
+                <span className="truncate">{tab.label}</span>
               </Link>
             </li>
           );
