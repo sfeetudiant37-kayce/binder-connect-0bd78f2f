@@ -11,16 +11,16 @@ export function EmptyState({
   action?: ReactNode;
 }) {
   return (
-    <div className="flex flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-[#E2E8F0] bg-white px-6 py-12 text-center">
+    <div className="card-surface flex flex-col items-center justify-center gap-3 px-6 py-14 text-center">
       <div
-        className="flex h-12 w-12 items-center justify-center rounded-full"
-        style={{ backgroundColor: "#DBEAFE", color: "#1E40AF" }}
+        className="grid h-14 w-14 place-items-center rounded-2xl"
+        style={{ background: "var(--gradient-brand)", color: "#fff", boxShadow: "var(--shadow-soft)" }}
       >
-        <Inbox size={22} />
+        <Inbox size={24} />
       </div>
-      <h3 className="text-base font-semibold">{title}</h3>
+      <h3 className="font-display text-lg font-bold">{title}</h3>
       {description && (
-        <p className="max-w-xs text-sm text-[#64748B]">{description}</p>
+        <p className="max-w-xs text-sm text-muted-foreground">{description}</p>
       )}
       {action}
     </div>

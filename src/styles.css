@@ -2,30 +2,52 @@
 @source "../src";
 
 /*
- * Binder Design System
- * Strict palette: white, royal blue (#1E40AF), red (#DC2626)
- * Font: Inter (loaded via <link> in __root.tsx)
+ * Binder — Modern Design System
+ * Palette: deep navy foundation, warm amber accent, calm off-white surfaces.
+ * Type: Space Grotesk (display) + Inter (body). Loaded via <link> in __root.tsx.
  */
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  --color-background: #ffffff;
-  --color-foreground: #0f172a;
-  --color-muted: #f8fafc;
-  --color-muted-foreground: #64748b;
-  --color-border: #e2e8f0;
+  /* Neutrals */
+  --color-background: #f7f7f4;
+  --color-surface: #ffffff;
+  --color-foreground: #0b1220;
+  --color-muted: #f1f2ee;
+  --color-muted-foreground: #5b6474;
+  --color-border: #e6e7e1;
+  --color-border-strong: #d5d7cf;
 
-  --color-brand: #1e40af;
-  --color-brand-dark: #1e3a8a;
-  --color-brand-soft: #dbeafe;
+  /* Brand — deep navy */
+  --color-brand: #0f1e3d;
+  --color-brand-2: #1c2f5f;
+  --color-brand-soft: #eaeef8;
   --color-brand-foreground: #ffffff;
 
-  --color-danger: #dc2626;
-  --color-danger-soft: #fee2e2;
+  /* Accent — warm amber */
+  --color-accent: #d97706;
+  --color-accent-2: #f59e0b;
+  --color-accent-soft: #fef3e2;
+  --color-accent-foreground: #1a1206;
+
+  /* Semantic */
+  --color-success: #0f766e;
+  --color-success-soft: #d7efec;
+  --color-danger: #b42318;
+  --color-danger-soft: #fde4e1;
   --color-danger-foreground: #ffffff;
 
-  --radius-card: 12px;
+  --radius-card: 16px;
+
+  --shadow-soft: 0 1px 2px rgb(15 30 61 / 0.04), 0 8px 24px -12px rgb(15 30 61 / 0.12);
+  --shadow-elevated: 0 2px 4px rgb(15 30 61 / 0.05), 0 24px 48px -20px rgb(15 30 61 / 0.22);
+  --shadow-glow: 0 10px 30px -10px color-mix(in oklab, var(--color-accent) 55%, transparent);
+
+  --gradient-brand: linear-gradient(135deg, #0f1e3d 0%, #1c2f5f 55%, #2b4a8f 100%);
+  --gradient-accent: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  --gradient-hero: radial-gradient(ellipse at top left, #eaeef8 0%, #f7f7f4 55%, #fef3e2 100%);
 }
 
 @layer base {
@@ -36,6 +58,11 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
   }
   * {
     border-color: var(--color-border);
@@ -44,9 +71,13 @@
     -webkit-tap-highlight-color: transparent;
   }
   :focus-visible {
-    outline: 2px solid var(--color-brand);
+    outline: 2px solid var(--color-accent);
     outline-offset: 2px;
-    border-radius: 4px;
+    border-radius: 6px;
+  }
+  ::selection {
+    background: var(--color-brand);
+    color: #fff;
   }
 }
 
@@ -55,21 +86,40 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  min-height: 44px;
-  padding: 0.625rem 1rem;
-  border-radius: 8px;
-  background-color: var(--color-brand);
+  min-height: 48px;
+  padding: 0.75rem 1.25rem;
+  border-radius: 12px;
+  background: var(--gradient-brand);
   color: var(--color-brand-foreground);
   font-weight: 600;
-  font-size: 14px;
-  transition: background-color 0.15s ease;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.15s ease;
   &:hover {
-    background-color: var(--color-brand-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-elevated);
+    filter: brightness(1.05);
   }
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
+  &:active { transform: translateY(0); }
+  &:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+}
+
+@utility btn-accent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  padding: 0.75rem 1.25rem;
+  border-radius: 12px;
+  background: var(--gradient-accent);
+  color: var(--color-accent-foreground);
+  font-weight: 700;
+  font-size: 15px;
+  box-shadow: var(--shadow-glow);
+  transition: transform 0.15s ease, filter 0.15s ease;
+  &:hover { transform: translateY(-1px); filter: brightness(1.05); }
 }
 
 @utility btn-secondary {
@@ -77,17 +127,16 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  min-height: 44px;
-  padding: 0.625rem 1rem;
-  border-radius: 8px;
-  background-color: #ffffff;
+  min-height: 48px;
+  padding: 0.75rem 1.25rem;
+  border-radius: 12px;
+  background-color: var(--color-surface);
   color: var(--color-brand);
-  border: 1px solid var(--color-brand);
+  border: 1px solid var(--color-border-strong);
   font-weight: 600;
-  font-size: 14px;
-  &:hover {
-    background-color: var(--color-brand-soft);
-  }
+  font-size: 15px;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  &:hover { background-color: var(--color-brand-soft); border-color: var(--color-brand); }
 }
 
 @utility btn-danger {
@@ -95,16 +144,14 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  min-height: 44px;
-  padding: 0.625rem 1rem;
-  border-radius: 8px;
+  min-height: 48px;
+  padding: 0.75rem 1.25rem;
+  border-radius: 12px;
   background-color: var(--color-danger);
   color: var(--color-danger-foreground);
   font-weight: 600;
-  font-size: 14px;
-  &:hover {
-    background-color: #b91c1c;
-  }
+  font-size: 15px;
+  &:hover { background-color: #991b0f; }
 }
 
 @utility btn-ghost {
@@ -113,51 +160,76 @@
   justify-content: center;
   gap: 0.5rem;
   min-height: 44px;
-  padding: 0.625rem 1rem;
-  border-radius: 8px;
+  padding: 0.5rem 0.875rem;
+  border-radius: 10px;
   color: var(--color-brand);
   font-weight: 600;
   font-size: 14px;
-  &:hover {
-    background-color: var(--color-brand-soft);
-  }
+  &:hover { background-color: var(--color-brand-soft); }
 }
 
 @utility card-surface {
-  background-color: #ffffff;
+  background-color: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 12px;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+@utility card-elevated {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  box-shadow: var(--shadow-elevated);
+}
+
+@utility surface-brand {
+  background: var(--gradient-brand);
+  color: var(--color-brand-foreground);
+  border-radius: 20px;
+  box-shadow: var(--shadow-elevated);
+}
+
+@utility surface-accent {
+  background: var(--gradient-accent);
+  color: var(--color-accent-foreground);
+  border-radius: 20px;
+  box-shadow: var(--shadow-glow);
+}
+
+@utility glass-bar {
+  background-color: color-mix(in oklab, var(--color-surface) 82%, transparent);
+  backdrop-filter: saturate(1.4) blur(14px);
+  -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  border-color: color-mix(in oklab, var(--color-border) 70%, transparent);
 }
 
 @utility input-field {
   display: block;
   width: 100%;
-  min-height: 44px;
-  padding: 0.625rem 0.875rem;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  font-size: 14px;
-  background-color: #ffffff;
+  min-height: 48px;
+  padding: 0.75rem 0.95rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 12px;
+  font-size: 15px;
+  background-color: var(--color-surface);
   color: var(--color-foreground);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
   &:focus {
     border-color: var(--color-brand);
-    outline: 2px solid var(--color-brand);
-    outline-offset: -1px;
+    outline: none;
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-brand) 15%, transparent);
   }
-  &::placeholder {
-    color: var(--color-muted-foreground);
-  }
+  &::placeholder { color: var(--color-muted-foreground); }
 }
 
 @utility chip {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  padding: 0.375rem 0.75rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 9999px;
   border: 1px solid var(--color-border);
-  background-color: #ffffff;
+  background-color: var(--color-surface);
   color: var(--color-foreground);
   font-size: 12px;
   font-weight: 500;
@@ -167,15 +239,44 @@
 }
 
 @utility chip-active {
-  background-color: var(--color-brand);
+  background: var(--gradient-brand);
   color: var(--color-brand-foreground);
-  border-color: var(--color-brand);
+  border-color: transparent;
 }
 
-/* Hide scrollbar utility for horizontal chip rows */
+@utility tag-soft {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  background-color: var(--color-brand-soft);
+  color: var(--color-brand);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+@utility tag-accent {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  background-color: var(--color-accent-soft);
+  color: #7c4a03;
+  font-size: 11px;
+  font-weight: 600;
+}
+
 @utility no-scrollbar {
   scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  &::-webkit-scrollbar { display: none; }
+}
+
+@utility eyebrow {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
 }

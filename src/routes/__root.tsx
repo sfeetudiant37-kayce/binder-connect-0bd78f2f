@@ -81,7 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Binder is a mobile-first professional marketplace for Cameroon. Find plumbers, electricians, cleaners and skilled talent, or offer your services.",
       },
-      { name: "theme-color", content: "#1E40AF" },
+      { name: "theme-color", content: "#0f1e3d" },
       { property: "og:title", content: "Binder — Connect. Match. Work." },
       {
         property: "og:description",
@@ -103,7 +103,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap",
       },
     ],
   }),
