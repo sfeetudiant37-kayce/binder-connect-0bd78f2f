@@ -20,57 +20,64 @@ function Splash() {
       className="relative min-h-dvh overflow-hidden"
       style={{ background: "var(--gradient-hero)" }}
     >
-      {/* Ambient orbs */}
+      {/* Technical grid ornament */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full opacity-70 blur-3xl"
-        style={{ background: "radial-gradient(circle, #eaeef8 0%, transparent 70%)" }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -bottom-32 -right-16 h-80 w-80 rounded-full opacity-70 blur-3xl"
-        style={{ background: "radial-gradient(circle, #fef3e2 0%, transparent 70%)" }}
+        className="grid-ornament pointer-events-none absolute inset-0 opacity-[0.25]"
+        style={{
+          maskImage:
+            "radial-gradient(ellipse at 50% 30%, black 40%, transparent 75%)",
+        }}
       />
 
       <div className="relative mx-auto flex min-h-dvh max-w-lg flex-col justify-between px-6 py-10">
         <div className="pt-6">
-          <div className="tag-soft gap-1.5">
-            <Sparkles size={12} /> Made in Cameroon
+          <div className="tag-outline">
+            <Sparkles size={11} /> Final-Year Project · Cameroon
           </div>
-          <h1 className="mt-6 font-display text-6xl font-bold leading-[0.95] tracking-tight text-brand">
-            Binder.
+          <h1 className="mt-6 font-display text-[68px] font-bold leading-[0.92] tracking-tight text-brand">
+            Binder<span style={{ color: "var(--color-accent)" }}>.</span>
           </h1>
-          <p className="mt-4 max-w-sm font-display text-xl font-medium text-foreground">
+          <p className="mt-4 max-w-sm font-display text-xl font-semibold text-foreground">
             {t("tagline")}
           </p>
-          <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-muted-foreground">
-            A mobile marketplace where clients and skilled providers meet in a
-            single swipe. Works offline, speaks EN &amp; FR.
+          <p className="mt-3 max-w-sm text-[15px] leading-relaxed text-muted-foreground">
+            A mobile-first marketplace where clients and skilled providers meet
+            in a single swipe. Offline-ready. Bilingual EN / FR.
           </p>
+
+          <div className="mt-5 flex flex-wrap gap-2">
+            <span className="tag-soft"><ShieldCheck size={11} /> Trust-weighted matching</span>
+            <span className="tag-soft"><WifiOff size={11} /> Offline-first PWA</span>
+          </div>
         </div>
 
         <div className="my-8 flex-1">
-          <div
-            className="surface-brand relative mx-auto flex aspect-[4/5] max-w-xs items-center justify-center overflow-hidden p-8"
-          >
+          <div className="surface-brand relative mx-auto flex aspect-[4/5] max-w-xs items-center justify-center p-8">
             <div
               aria-hidden
-              className="absolute -right-10 -top-10 h-40 w-40 rounded-full opacity-40 blur-2xl"
+              className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full opacity-40 blur-2xl"
               style={{ background: "var(--gradient-accent)" }}
             />
             <div
               aria-hidden
-              className="absolute -left-8 bottom-4 h-32 w-32 rounded-full opacity-25 blur-2xl"
-              style={{ background: "#fff" }}
+              className="grid-ornament pointer-events-none absolute inset-0 opacity-[0.12]"
             />
             <div className="relative text-center">
-              <div className="font-display text-8xl font-bold leading-none">B.</div>
-              <div className="mt-6 text-[11px] font-semibold uppercase tracking-[0.35em] text-white/70">
+              <div className="eyebrow" style={{ color: "rgba(255,255,255,0.6)" }}>
+                v1.0 · Simulation Build
+              </div>
+              <div className="mt-3 font-display text-[96px] font-bold leading-none">
+                B<span style={{ color: "var(--color-accent-2)" }}>.</span>
+              </div>
+              <div className="mt-5 text-[11px] font-semibold uppercase tracking-[0.35em] text-white/70">
                 Connect · Match · Work
               </div>
-              <div className="mx-auto mt-6 h-px w-16 bg-white/25" />
-              <div className="mt-6 inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-[11px] font-medium text-white/85">
-                <ShieldCheck size={12} /> Trusted matching
+              <div className="mx-auto mt-5 h-px w-20 bg-white/25" />
+              <div className="mt-5 grid grid-cols-3 gap-3 text-left">
+                <MetricPill label="Matches" value="1.2k" />
+                <MetricPill label="Providers" value="380" />
+                <MetricPill label="Cities" value="12" />
               </div>
             </div>
           </div>
