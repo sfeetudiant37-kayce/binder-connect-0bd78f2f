@@ -2,35 +2,37 @@
 @source "../src";
 
 /*
- * Binder — Modern Design System
- * Palette: deep navy foundation, warm amber accent, calm off-white surfaces.
- * Type: Space Grotesk (display) + Inter (body). Loaded via <link> in __root.tsx.
+ * Binder — Defense-Grade Design System
+ * Palette: Navy Trust foundation, warm gold accent, paper-white surfaces.
+ * Type: Sora (display) + Manrope (body). Loaded via <link> in __root.tsx.
  */
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sora", "Manrope", ui-sans-serif, system-ui, sans-serif;
 
   /* Neutrals */
-  --color-background: #f7f7f4;
+  --color-background: #f6f7fb;
   --color-surface: #ffffff;
-  --color-foreground: #0b1220;
-  --color-muted: #f1f2ee;
-  --color-muted-foreground: #5b6474;
-  --color-border: #e6e7e1;
-  --color-border-strong: #d5d7cf;
+  --color-surface-2: #fbfbfd;
+  --color-foreground: #0a1330;
+  --color-muted: #eef1f7;
+  --color-muted-foreground: #59627a;
+  --color-border: #e4e8f0;
+  --color-border-strong: #ccd3e0;
 
   /* Brand — deep navy */
-  --color-brand: #0f1e3d;
-  --color-brand-2: #1c2f5f;
-  --color-brand-soft: #eaeef8;
+  --color-brand: #0f1b3d;
+  --color-brand-2: #1e3a5f;
+  --color-brand-3: #3b6fa0;
+  --color-brand-soft: #e8edf3;
   --color-brand-foreground: #ffffff;
 
-  /* Accent — warm amber */
-  --color-accent: #d97706;
-  --color-accent-2: #f59e0b;
-  --color-accent-soft: #fef3e2;
-  --color-accent-foreground: #1a1206;
+  /* Accent — warm gold */
+  --color-accent: #c9a24c;
+  --color-accent-2: #e2c26a;
+  --color-accent-soft: #f7f0dc;
+  --color-accent-foreground: #201603;
 
   /* Semantic */
   --color-success: #0f766e;
@@ -39,15 +41,20 @@
   --color-danger-soft: #fde4e1;
   --color-danger-foreground: #ffffff;
 
-  --radius-card: 16px;
+  --radius-card: 18px;
 
-  --shadow-soft: 0 1px 2px rgb(15 30 61 / 0.04), 0 8px 24px -12px rgb(15 30 61 / 0.12);
-  --shadow-elevated: 0 2px 4px rgb(15 30 61 / 0.05), 0 24px 48px -20px rgb(15 30 61 / 0.22);
-  --shadow-glow: 0 10px 30px -10px color-mix(in oklab, var(--color-accent) 55%, transparent);
+  --shadow-hairline: inset 0 0 0 1px rgb(15 27 61 / 0.06);
+  --shadow-soft: 0 1px 2px rgb(15 27 61 / 0.05), 0 12px 32px -18px rgb(15 27 61 / 0.18);
+  --shadow-elevated: 0 2px 6px rgb(15 27 61 / 0.06), 0 28px 60px -24px rgb(15 27 61 / 0.28);
+  --shadow-glow: 0 12px 34px -14px color-mix(in oklab, var(--color-accent) 60%, transparent);
 
-  --gradient-brand: linear-gradient(135deg, #0f1e3d 0%, #1c2f5f 55%, #2b4a8f 100%);
-  --gradient-accent: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  --gradient-hero: radial-gradient(ellipse at top left, #eaeef8 0%, #f7f7f4 55%, #fef3e2 100%);
+  --gradient-brand: linear-gradient(135deg, #0a1330 0%, #0f1b3d 40%, #1e3a5f 100%);
+  --gradient-brand-2: linear-gradient(135deg, #0f1b3d 0%, #1e3a5f 60%, #3b6fa0 100%);
+  --gradient-accent: linear-gradient(135deg, #e2c26a 0%, #c9a24c 100%);
+  --gradient-hero:
+    radial-gradient(1200px 600px at 90% -10%, #e8edf3 0%, transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, #f7f0dc 0%, transparent 60%),
+    linear-gradient(180deg, #f6f7fb 0%, #ffffff 100%);
 }
 
 @layer base {
@@ -62,109 +69,73 @@
   }
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.022em;
   }
   * {
     border-color: var(--color-border);
   }
-  button {
-    -webkit-tap-highlight-color: transparent;
-  }
+  button { -webkit-tap-highlight-color: transparent; }
   :focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
     border-radius: 6px;
   }
-  ::selection {
-    background: var(--color-brand);
-    color: #fff;
-  }
+  ::selection { background: var(--color-brand); color: #fff; }
+}
+
+/* ————— Grid ornament (defense / technical vibe) ————— */
+@utility grid-ornament {
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--color-brand) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--color-brand) 8%, transparent) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: -1px -1px;
 }
 
 @utility btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  min-height: 48px;
-  padding: 0.75rem 1.25rem;
-  border-radius: 12px;
-  background: var(--gradient-brand);
-  color: var(--color-brand-foreground);
-  font-weight: 600;
-  font-size: 15px;
-  letter-spacing: -0.01em;
-  box-shadow: var(--shadow-soft);
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  min-height: 48px; padding: 0.75rem 1.25rem; border-radius: 12px;
+  background: var(--gradient-brand); color: var(--color-brand-foreground);
+  font-weight: 600; font-size: 15px; letter-spacing: -0.01em;
+  box-shadow: var(--shadow-soft), var(--shadow-hairline);
   transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.15s ease;
-  &:hover {
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-elevated);
-    filter: brightness(1.05);
-  }
+  &:hover { transform: translateY(-1px); box-shadow: var(--shadow-elevated); filter: brightness(1.06); }
   &:active { transform: translateY(0); }
   &:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 }
 
 @utility btn-accent {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  min-height: 48px;
-  padding: 0.75rem 1.25rem;
-  border-radius: 12px;
-  background: var(--gradient-accent);
-  color: var(--color-accent-foreground);
-  font-weight: 700;
-  font-size: 15px;
-  box-shadow: var(--shadow-glow);
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  min-height: 48px; padding: 0.75rem 1.25rem; border-radius: 12px;
+  background: var(--gradient-accent); color: var(--color-accent-foreground);
+  font-weight: 700; font-size: 15px;
+  box-shadow: var(--shadow-glow), var(--shadow-hairline);
   transition: transform 0.15s ease, filter 0.15s ease;
   &:hover { transform: translateY(-1px); filter: brightness(1.05); }
 }
 
 @utility btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  min-height: 48px;
-  padding: 0.75rem 1.25rem;
-  border-radius: 12px;
-  background-color: var(--color-surface);
-  color: var(--color-brand);
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  min-height: 48px; padding: 0.75rem 1.25rem; border-radius: 12px;
+  background-color: var(--color-surface); color: var(--color-brand);
   border: 1px solid var(--color-border-strong);
-  font-weight: 600;
-  font-size: 15px;
+  font-weight: 600; font-size: 15px;
   transition: background 0.15s ease, border-color 0.15s ease;
   &:hover { background-color: var(--color-brand-soft); border-color: var(--color-brand); }
 }
 
 @utility btn-danger {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  min-height: 48px;
-  padding: 0.75rem 1.25rem;
-  border-radius: 12px;
-  background-color: var(--color-danger);
-  color: var(--color-danger-foreground);
-  font-weight: 600;
-  font-size: 15px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  min-height: 48px; padding: 0.75rem 1.25rem; border-radius: 12px;
+  background-color: var(--color-danger); color: var(--color-danger-foreground);
+  font-weight: 600; font-size: 15px;
   &:hover { background-color: #991b0f; }
 }
 
 @utility btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  min-height: 44px;
-  padding: 0.5rem 0.875rem;
-  border-radius: 10px;
-  color: var(--color-brand);
-  font-weight: 600;
-  font-size: 14px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  min-height: 40px; padding: 0.5rem 0.875rem; border-radius: 10px;
+  color: var(--color-brand); font-weight: 600; font-size: 13px;
   &:hover { background-color: var(--color-brand-soft); }
 }
 
@@ -178,64 +149,54 @@
 @utility card-elevated {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 20px;
+  border-radius: 22px;
   box-shadow: var(--shadow-elevated);
 }
 
 @utility surface-brand {
+  position: relative;
   background: var(--gradient-brand);
   color: var(--color-brand-foreground);
-  border-radius: 20px;
+  border-radius: 22px;
   box-shadow: var(--shadow-elevated);
+  isolation: isolate;
+  overflow: hidden;
 }
 
 @utility surface-accent {
   background: var(--gradient-accent);
   color: var(--color-accent-foreground);
-  border-radius: 20px;
+  border-radius: 22px;
   box-shadow: var(--shadow-glow);
 }
 
 @utility glass-bar {
-  background-color: color-mix(in oklab, var(--color-surface) 82%, transparent);
-  backdrop-filter: saturate(1.4) blur(14px);
-  -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  background-color: color-mix(in oklab, var(--color-surface) 78%, transparent);
+  backdrop-filter: saturate(1.4) blur(16px);
+  -webkit-backdrop-filter: saturate(1.4) blur(16px);
   border-color: color-mix(in oklab, var(--color-border) 70%, transparent);
 }
 
 @utility input-field {
-  display: block;
-  width: 100%;
-  min-height: 48px;
+  display: block; width: 100%; min-height: 48px;
   padding: 0.75rem 0.95rem;
-  border: 1px solid var(--color-border-strong);
-  border-radius: 12px;
-  font-size: 15px;
-  background-color: var(--color-surface);
-  color: var(--color-foreground);
+  border: 1px solid var(--color-border-strong); border-radius: 12px;
+  font-size: 15px; background-color: var(--color-surface); color: var(--color-foreground);
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
   &:focus {
-    border-color: var(--color-brand);
-    outline: none;
+    border-color: var(--color-brand); outline: none;
     box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-brand) 15%, transparent);
   }
   &::placeholder { color: var(--color-muted-foreground); }
 }
 
 @utility chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.4rem 0.8rem;
-  border-radius: 9999px;
+  display: inline-flex; align-items: center; gap: 0.375rem;
+  padding: 0.4rem 0.8rem; border-radius: 9999px;
   border: 1px solid var(--color-border);
-  background-color: var(--color-surface);
-  color: var(--color-foreground);
-  font-size: 12px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  min-height: 32px;
+  background-color: var(--color-surface); color: var(--color-foreground);
+  font-size: 12px; font-weight: 500; cursor: pointer;
+  transition: all 0.15s ease; min-height: 32px;
 }
 
 @utility chip-active {
@@ -245,26 +206,26 @@
 }
 
 @utility tag-soft {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.25rem 0.625rem;
-  border-radius: 9999px;
-  background-color: var(--color-brand-soft);
-  color: var(--color-brand);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.3rem 0.7rem; border-radius: 9999px;
+  background-color: var(--color-brand-soft); color: var(--color-brand);
+  font-size: 11px; font-weight: 600; letter-spacing: 0.02em;
 }
 
 @utility tag-accent {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.25rem 0.625rem;
-  border-radius: 9999px;
-  background-color: var(--color-accent-soft);
-  color: #7c4a03;
-  font-size: 11px;
-  font-weight: 600;
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.3rem 0.7rem; border-radius: 9999px;
+  background-color: var(--color-accent-soft); color: #6b4d0e;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.02em;
+}
+
+@utility tag-outline {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.25rem 0.6rem; border-radius: 9999px;
+  border: 1px solid color-mix(in oklab, var(--color-brand) 20%, transparent);
+  color: var(--color-brand);
+  font-size: 10.5px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
 }
 
 @utility no-scrollbar {
@@ -274,9 +235,13 @@
 
 @utility eyebrow {
   font-family: var(--font-display);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  font-size: 10.5px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
   color: var(--color-muted-foreground);
+}
+
+@utility hairline {
+  background-image: linear-gradient(90deg,
+    transparent, color-mix(in oklab, var(--color-brand) 25%, transparent), transparent);
+  height: 1px; width: 100%;
 }
