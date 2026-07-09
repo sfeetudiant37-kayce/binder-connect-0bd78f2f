@@ -98,3 +98,14 @@ function Splash() {
     </main>
   );
 }
+
+function MetricPill({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-lg bg-white/10 px-2 py-2 text-center backdrop-blur-sm">
+      <div className="font-display text-sm font-bold text-white">{value}</div>
+      <div className="mt-0.5 text-[9px] font-semibold uppercase tracking-wider text-white/60">
+        {label}
+      </div>
+    </div>
+  );
+}
