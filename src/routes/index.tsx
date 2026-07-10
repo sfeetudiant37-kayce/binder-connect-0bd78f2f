@@ -30,7 +30,7 @@ function Splash() {
         }}
       />
 
-      <div className="relative mx-auto flex min-h-dvh max-w-lg flex-col justify-between px-6 py-10">
+      <div className="relative mx-auto flex min-h-dvh max-w-[600px] flex-col justify-between px-6 py-10">
         <div className="pt-6">
           <div className="tag-outline">
             <Sparkles size={11} /> Final-Year Project · Cameroon
