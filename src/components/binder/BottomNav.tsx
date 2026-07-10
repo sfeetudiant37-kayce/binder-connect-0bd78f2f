@@ -27,7 +27,7 @@ export function BottomNav() {
       aria-label="Primary"
       className="glass-bar sticky bottom-0 z-30 border-t pb-[env(safe-area-inset-bottom)]"
     >
-      <ul className="mx-auto grid max-w-lg grid-cols-5 gap-1 px-2 py-1.5">
+      <ul className="mx-auto grid max-w-[600px] grid-cols-5 gap-1 px-2 py-1.5">
         {tabs.map((tab) => {
           const active = path === tab.to || path.startsWith(tab.to + "/");
           const Icon = tab.icon;

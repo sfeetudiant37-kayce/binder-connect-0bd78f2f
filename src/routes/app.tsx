@@ -23,7 +23,7 @@ function AppLayout() {
     <div className="flex min-h-dvh flex-col" style={{ background: "var(--gradient-hero)" }}>
       <OfflineBar />
       <AppHeader />
-      <main className="mx-auto w-full max-w-lg flex-1 px-4 pb-6 pt-4">
+      <main className="mx-auto w-full max-w-[600px] flex-1 px-4 pb-6 pt-4">
         <Outlet />
       </main>
       <BottomNav />
