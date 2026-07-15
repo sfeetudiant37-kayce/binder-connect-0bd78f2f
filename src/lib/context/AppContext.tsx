@@ -276,7 +276,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     if (patch.profileCompletion !== undefined)
       dbPatch.profile_completion = patch.profileCompletion;
     if (Object.keys(dbPatch).length === 0) return;
-    await supabase.from("profiles").update(dbPatch).eq("id", authData.user.id);
+    await supabase.from("profiles").update(dbPatch as never).eq("id", authData.user.id);
   }, []);
 
   const setWeights = useCallback(
