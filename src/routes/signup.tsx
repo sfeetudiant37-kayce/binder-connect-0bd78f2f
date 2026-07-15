@@ -3,6 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { ArrowLeft } from "lucide-react";
+import { toast } from "sonner";
 import { useApp } from "@/lib/context/AppContext";
 
 export const Route = createFileRoute("/signup")({
@@ -27,8 +28,15 @@ function SignupPage() {
     formState: { errors, isSubmitting },
   } = useForm<Form>({ resolver: zodResolver(schema) });
 
-  function onSubmit(v: Form) {
-    signUp(v.name, v.email);
+  async function onSubmit(v: Form) {
+    const { error } = await signUp(v.name, v.email, v.password);
+    if (error) {
+      toast.error("Sign up failed", { description: error });
+      return;
+    }
+    toast.success("Account created", {
+      description: "Check your email if confirmation is required.",
+    });
     nav({ to: "/onboarding/objective" });
   }
 
