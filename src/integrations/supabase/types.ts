@@ -14,7 +14,321 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      matches: {
+        Row: {
+          client_fit_score: number
+          client_id: string
+          contact_revealed: boolean
+          created_at: string
+          id: string
+          initiated_by: Database["public"]["Enums"]["app_role"]
+          provider_fit_score: number
+          provider_id: string
+          request_id: string | null
+          status: Database["public"]["Enums"]["match_status"]
+          updated_at: string
+        }
+        Insert: {
+          client_fit_score?: number
+          client_id: string
+          contact_revealed?: boolean
+          created_at?: string
+          id?: string
+          initiated_by: Database["public"]["Enums"]["app_role"]
+          provider_fit_score?: number
+          provider_id: string
+          request_id?: string | null
+          status?: Database["public"]["Enums"]["match_status"]
+          updated_at?: string
+        }
+        Update: {
+          client_fit_score?: number
+          client_id?: string
+          contact_revealed?: boolean
+          created_at?: string
+          id?: string
+          initiated_by?: Database["public"]["Enums"]["app_role"]
+          provider_fit_score?: number
+          provider_id?: string
+          request_id?: string | null
+          status?: Database["public"]["Enums"]["match_status"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "matches_request_id_fkey"
+            columns: ["request_id"]
+            isOneToOne: false
+            referencedRelation: "service_requests"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      messages: {
+        Row: {
+          content: string
+          id: string
+          is_read: boolean
+          match_id: string
+          sender_id: string
+          sent_at: string
+        }
+        Insert: {
+          content: string
+          id?: string
+          is_read?: boolean
+          match_id: string
+          sender_id: string
+          sent_at?: string
+        }
+        Update: {
+          content?: string
+          id?: string
+          is_read?: boolean
+          match_id?: string
+          sender_id?: string
+          sent_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "messages_match_id_fkey"
+            columns: ["match_id"]
+            isOneToOne: false
+            referencedRelation: "matches"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          active_role: Database["public"]["Enums"]["app_role"]
+          availability: Database["public"]["Enums"]["availability"]
+          bio: string | null
+          created_at: string
+          email: string
+          experience: number | null
+          facebook: string | null
+          id: string
+          language: Database["public"]["Enums"]["app_lang"]
+          location: string
+          name: string
+          objective: Database["public"]["Enums"]["objective"]
+          phone: string | null
+          photo_url: string | null
+          preferences: string[]
+          price: number | null
+          profile_completion: number
+          rating: number
+          review_count: number
+          skills: string[]
+          title: string | null
+          updated_at: string
+          whatsapp: string | null
+        }
+        Insert: {
+          active_role?: Database["public"]["Enums"]["app_role"]
+          availability?: Database["public"]["Enums"]["availability"]
+          bio?: string | null
+          created_at?: string
+          email: string
+          experience?: number | null
+          facebook?: string | null
+          id: string
+          language?: Database["public"]["Enums"]["app_lang"]
+          location?: string
+          name?: string
+          objective?: Database["public"]["Enums"]["objective"]
+          phone?: string | null
+          photo_url?: string | null
+          preferences?: string[]
+          price?: number | null
+          profile_completion?: number
+          rating?: number
+          review_count?: number
+          skills?: string[]
+          title?: string | null
+          updated_at?: string
+          whatsapp?: string | null
+        }
+        Update: {
+          active_role?: Database["public"]["Enums"]["app_role"]
+          availability?: Database["public"]["Enums"]["availability"]
+          bio?: string | null
+          created_at?: string
+          email?: string
+          experience?: number | null
+          facebook?: string | null
+          id?: string
+          language?: Database["public"]["Enums"]["app_lang"]
+          location?: string
+          name?: string
+          objective?: Database["public"]["Enums"]["objective"]
+          phone?: string | null
+          photo_url?: string | null
+          preferences?: string[]
+          price?: number | null
+          profile_completion?: number
+          rating?: number
+          review_count?: number
+          skills?: string[]
+          title?: string | null
+          updated_at?: string
+          whatsapp?: string | null
+        }
+        Relationships: []
+      }
+      reviews: {
+        Row: {
+          comment: string | null
+          created_at: string
+          from_user_id: string
+          id: string
+          match_id: string
+          rating: number
+          to_user_id: string
+        }
+        Insert: {
+          comment?: string | null
+          created_at?: string
+          from_user_id: string
+          id?: string
+          match_id: string
+          rating: number
+          to_user_id: string
+        }
+        Update: {
+          comment?: string | null
+          created_at?: string
+          from_user_id?: string
+          id?: string
+          match_id?: string
+          rating?: number
+          to_user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_match_id_fkey"
+            columns: ["match_id"]
+            isOneToOne: false
+            referencedRelation: "matches"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      service_requests: {
+        Row: {
+          budget: number
+          category: string
+          client_id: string
+          created_at: string
+          description: string
+          id: string
+          location: string
+          skills: string[]
+          status: Database["public"]["Enums"]["request_status"]
+          title: string
+          updated_at: string
+          urgency: Database["public"]["Enums"]["urgency"]
+        }
+        Insert: {
+          budget?: number
+          category: string
+          client_id: string
+          created_at?: string
+          description: string
+          id?: string
+          location: string
+          skills?: string[]
+          status?: Database["public"]["Enums"]["request_status"]
+          title: string
+          updated_at?: string
+          urgency?: Database["public"]["Enums"]["urgency"]
+        }
+        Update: {
+          budget?: number
+          category?: string
+          client_id?: string
+          created_at?: string
+          description?: string
+          id?: string
+          location?: string
+          skills?: string[]
+          status?: Database["public"]["Enums"]["request_status"]
+          title?: string
+          updated_at?: string
+          urgency?: Database["public"]["Enums"]["urgency"]
+        }
+        Relationships: []
+      }
+      swipes: {
+        Row: {
+          created_at: string
+          direction: Database["public"]["Enums"]["swipe_dir"]
+          fit_score: number
+          id: string
+          swiper_role: Database["public"]["Enums"]["app_role"]
+          target_id: string
+          target_type: Database["public"]["Enums"]["swipe_target"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          direction: Database["public"]["Enums"]["swipe_dir"]
+          fit_score?: number
+          id?: string
+          swiper_role: Database["public"]["Enums"]["app_role"]
+          target_id: string
+          target_type: Database["public"]["Enums"]["swipe_target"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          direction?: Database["public"]["Enums"]["swipe_dir"]
+          fit_score?: number
+          id?: string
+          swiper_role?: Database["public"]["Enums"]["app_role"]
+          target_id?: string
+          target_type?: Database["public"]["Enums"]["swipe_target"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      weights: {
+        Row: {
+          availability: number
+          experience: number
+          location: number
+          preferences: number
+          price: number
+          profile_completeness: number
+          rating: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          availability?: number
+          experience?: number
+          location?: number
+          preferences?: number
+          price?: number
+          profile_completeness?: number
+          rating?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          availability?: number
+          experience?: number
+          location?: number
+          preferences?: number
+          price?: number
+          profile_completeness?: number
+          rating?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +337,26 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      app_lang: "en" | "fr"
+      app_role: "client" | "provider"
+      availability: "immediate" | "this_week" | "flexible" | "busy"
+      match_status:
+        | "provider_interested"
+        | "client_interested"
+        | "mutual"
+        | "contacted"
+        | "completed"
+      objective:
+        | "find_service"
+        | "offer_service"
+        | "find_job"
+        | "recruit_talent"
+        | "grow_brand"
+        | "network"
+      request_status: "open" | "in_progress" | "completed"
+      swipe_dir: "left" | "right"
+      swipe_target: "user" | "request"
+      urgency: "urgent" | "this_week" | "flexible"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +483,29 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_lang: ["en", "fr"],
+      app_role: ["client", "provider"],
+      availability: ["immediate", "this_week", "flexible", "busy"],
+      match_status: [
+        "provider_interested",
+        "client_interested",
+        "mutual",
+        "contacted",
+        "completed",
+      ],
+      objective: [
+        "find_service",
+        "offer_service",
+        "find_job",
+        "recruit_talent",
+        "grow_brand",
+        "network",
+      ],
+      request_status: ["open", "in_progress", "completed"],
+      swipe_dir: ["left", "right"],
+      swipe_target: ["user", "request"],
+      urgency: ["urgent", "this_week", "flexible"],
+    },
   },
 } as const
